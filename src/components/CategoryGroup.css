@@ -1,0 +1,12 @@
+.itemGroup {
+  padding: 10px;
+}
+
+.categoryGroupHeader  {
+  font-weight: 600; 
+}
+
+.categoryGroupBody  {
+  text-indent: 10px;
+  font-size: smaller;
+}
