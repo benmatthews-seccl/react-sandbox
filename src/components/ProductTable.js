@@ -16,35 +16,20 @@ export default class ProductTable extends react.Component {
   }
 
 
-  inStockFilter = () => {
-    if (this.state.inStock) {
-      this.setState({
-        searchData: this.state.data.filter(item => item.stocked === !this.state.inStock),
-        inStock: !this.state.inStock
-      })
-      return
-    }
+  inStockFilter = () => this.setState({inStock: !this.state.inStock})
 
-    this.setState({
-      searchData: this.state.data,
-      inStock: !this.state.inStock
-    })
-    return
-  }
-
-  searchFilter = (e) => {
-    this.setState({
-      search: e,
-      filteredData: this.state.data.filter(item => item.name.includes(e))
-    })
-  }
+  searchFilter = (e) => this.setState({search: e})
 
   render () {
+    let filteredData = this.state.data.filter(item => item.name.includes(this.state.search))
+    if (this.state.inStock) {
+      filteredData = filteredData.filter(item => item.stocked)
+    }
     return (<div className='ProductTable'>
       <SearchBox
         handleSearchChange={this.searchFilter}
         handleToggleChange={this.inStockFilter}/>
-      <CategoryGroup data={this.state.filteredData}/>
+      <CategoryGroup data={filteredData} />
     </div>)
   }
 }
